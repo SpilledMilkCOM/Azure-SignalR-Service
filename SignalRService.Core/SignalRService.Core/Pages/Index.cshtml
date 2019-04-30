@@ -1,10 +1,45 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+	ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+	<h1 class="display-4">Welcome</h1>
+	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<script>
+	function bindConnectionMessage(connection) {
+
+		var messageCallback = function (name, message) {
+
+			if (!message) return;
+
+			// deal with the message
+			alert("message received:" + message);
+		};
+
+		// Create a function that the hub can call to broadcast messages.
+
+		connection.on('broadcastMessage', messageCallback);
+		connection.on('echo', messageCallback);
+	}
+
+	// The '/bus' is defined in Startup.cs (  routes.MapHub<Bus>("/bus");  )
+
+	var connection = new signalR.HubConnectionBuilder()
+		.withUrl('/bus')
+		.build();
+
+	bindConnectionMessage(connection);
+
+	connection.start()
+		.then(function () {
+			onConnected(connection);
+		})
+		.catch(function (error) {
+			console.error(error.message);
+		});
+
+</script>
