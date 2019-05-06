@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRService.Core", "SignalRService.Core\SignalRService.Core.csproj", "{7CB40BA5-F1C3-4E17-ACCC-BDA3D940AAFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRService.Core", "SignalRService.Core\SignalRService.Core.csproj", "{7CB40BA5-F1C3-4E17-ACCC-BDA3D940AAFD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B3079D7B-BBCF-4CD8-A68B-00B0B8212279}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
 		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.Core", "..\SignalR.Core\SignalR.Core.csproj", "{218F14E6-92D0-4C3C-98F4-6F013B849CAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7CB40BA5-F1C3-4E17-ACCC-BDA3D940AAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CB40BA5-F1C3-4E17-ACCC-BDA3D940AAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CB40BA5-F1C3-4E17-ACCC-BDA3D940AAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{218F14E6-92D0-4C3C-98F4-6F013B849CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{218F14E6-92D0-4C3C-98F4-6F013B849CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{218F14E6-92D0-4C3C-98F4-6F013B849CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{218F14E6-92D0-4C3C-98F4-6F013B849CAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
