@@ -10,9 +10,27 @@ namespace SignalRService.Core
 {
 	public class Startup
 	{
+		private const string AZURE_SIGNALR_CONNECTION_STRING_KEY = "Azure:ConnectionString";
+
 		public Startup(IConfiguration configuration)
 		{
+			// This is the DEFAULT setting.
 			Configuration = configuration;
+
+			// Need to be able to use TWO different appsetting.json files.
+			// Many examples show this being built in the Configure() method to take advantage of IHostingEnvironment.
+			// A work-around (HACK) to be able to add the appsettings files you need, make sure you set their file attribute to "copy if newer".
+			// By default these files are set to "do not copy"
+			// Since the connection string is needed in the ConfigureServices() method, and THAT is called BEFORE Configure() then set this up here.
+			// (And you can keep the Configuration property "read only" versus adding a "private set;" method.)
+
+			var builder = new ConfigurationBuilder()
+			//.SetBasePath(env.ContentRootPath)
+			.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+			.AddJsonFile("appsettings.secret.json", optional: true)
+			.AddEnvironmentVariables();
+
+			Configuration = builder.Build();
 		}
 
 		public IConfiguration Configuration { get; }
@@ -30,8 +48,14 @@ namespace SignalRService.Core
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+			// Pasting the the "Quickstart" code here NEEDS MORE!
+
+			var connection = Configuration[AZURE_SIGNALR_CONNECTION_STRING_KEY];
+
+			// Sorry, this is a demo so make sure you verify this connection isn't null.
+
 			services.AddSignalR()
-					.AddAzureSignalR();
+					.AddAzureSignalR(connection);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,39 +7,45 @@
 <div class="text-center">
 	<h1 class="display-4">Welcome</h1>
 	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+	<input id="clientId" type="text" />
+	<input id="sendMessageId" type="button" title="Send"value="Send" style="width: 4rem;" />
+
+	<div id="latestMessage"></div>
 </div>
 
+<!-- NEED THIS!! The tutorial is helpful! -->
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+
+<!-- The following code I added. -->
+
 <script>
-	function bindConnectionMessage(connection) {
 
-		var messageCallback = function (name, message) {
-
-			if (!message) return;
-
-			// deal with the message
-			alert("message received:" + message);
-		};
-
-		// Create a function that the hub can call to broadcast messages.
-
-		connection.on('broadcastMessage', messageCallback);
-		connection.on('echo', messageCallback);
+	function clientName() {
+		return $('#clientId').val();
 	}
 
-	// The '/bus' is defined in Startup.cs (  routes.MapHub<Bus>("/bus");  )
+	function onConnected(connection) {
+		// Not sure what to here just yet.
+	}
 
-	var connection = new signalR.HubConnectionBuilder()
-		.withUrl('/bus')
-		.build();
+	function wireupClient(connection) {
+		$('#sendMessageId').click(function () {
+			// Call the hub's Echo() method (supplied by the default Quickstart code)
 
-	bindConnectionMessage(connection);
+			//hub.server.Echo(clientName(), 'HELLO! From the named client.');
 
-	connection.start()
-		.then(function () {
-			onConnected(connection);
-		})
-		.catch(function (error) {
-			console.error(error.message);
+			connection.invoke("Echo", clientName(), 'HELLO! From the named client.')
+				.catch(function (err) {
+					return console.error(err.toString());
+				});
 		});
+	}
 
 </script>
+
+<!-- The following javascript is part of the "Quickstart" guide in the Azure SignalR Service. -->
+
+<script src="~/js/azureQuickstart.js"></script>

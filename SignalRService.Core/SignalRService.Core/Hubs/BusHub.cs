@@ -14,11 +14,9 @@ namespace SignalRService.Core.Hubs
 			Clients.All.SendAsync("broadcastMessage", name, message);
 		}
 
-
 		public void Echo(string name, string message)
 		{
 			Clients.Client(Context.ConnectionId).SendAsync("echo", name, message + " (echo from server)");
 		}
-
 	}
 }

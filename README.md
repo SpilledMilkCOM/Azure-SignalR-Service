@@ -24,3 +24,4 @@ There is a "quickstart" section in the SignalR Service which outlines what code 
 * [Azure SignalR Samples](https://github.com/aspnet/AzureSignalR-samples)
 * [Quickstarts Serverless Chat](https://github.com/Azure-Samples/signalr-service-quickstart-serverless-chat)
 * [Azure Function Bindings](https://github.com/Azure/azure-functions-signalrservice-extension)
+* [Tutorial ASP.NET Core SignalR](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-2.2&tabs=visual-studio)
